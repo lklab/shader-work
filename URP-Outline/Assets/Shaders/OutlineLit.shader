@@ -185,7 +185,7 @@ Shader "Custom/OutlineLit"
                 "LightMode" = "Outline"
             }
 
-            ZWrite Off
+            ZWrite On
             Cull Front
 
             HLSLPROGRAM

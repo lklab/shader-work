@@ -11,7 +11,7 @@ Shader "Custom/OutlineAngled"
         Pass
         {
             Name "Outline"
-            Tags { "RenderType" = "Transparent" "RenderPipeline" = "UniversalPipeline" }
+            Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
 
             // ZWrite Off
             Cull Front
