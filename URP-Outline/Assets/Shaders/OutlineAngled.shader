@@ -56,7 +56,8 @@ Shader "Custom/OutlineAngled"
                 /* World space, constant outline thickness */
                 float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz);
                 float3 normalWS = TransformObjectToWorldNormal(IN.normalOS.xyz);
-                float distToCam = length(_WorldSpaceCameraPos - positionWS);
+                float3 positionView = positionWS - GetCameraPositionWS();
+                float distToCam = dot(GetViewForwardDir(), positionView);
                 positionWS += normalWS * distToCam * _OutlineDistance;
                 OUT.positionHCS = TransformWorldToHClip(positionWS);
 
