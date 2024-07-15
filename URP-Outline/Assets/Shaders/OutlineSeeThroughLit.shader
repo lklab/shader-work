@@ -103,6 +103,14 @@ Shader "Custom/OutlineSeeThroughLit"
                 "LightMode" = "UniversalForward"
             }
 
+            Stencil
+            {
+                Ref 2
+                Comp Always
+                Pass Replace
+                ZFail Replace
+            }
+
             // -------------------------------------
             // Render State Commands
             Blend[_SrcBlend][_DstBlend], [_SrcBlendAlpha][_DstBlendAlpha]
