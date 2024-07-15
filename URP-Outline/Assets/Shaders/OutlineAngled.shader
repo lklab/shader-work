@@ -34,8 +34,10 @@ Shader "Custom/OutlineAngled"
                 float4 positionHCS  : SV_POSITION;
             };
 
+            CBUFFER_START(UnityPerMaterial)
             half4 _OutlineColor;
             half _OutlineDistance;
+            CBUFFER_END
 
             Varyings vert(Attributes IN)
             {
