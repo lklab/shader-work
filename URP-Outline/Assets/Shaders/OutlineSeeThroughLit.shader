@@ -74,7 +74,7 @@ Shader "Custom/OutlineSeeThroughLit"
         [HideInInspector][NoScaleOffset]unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
 
         _OutlineColor("Outline Color", Color) = (1, 0, 0, 1)
-        _OutlineDistance("Outline Distance", Float) = 0.1
+        _OutlineThickness("Outline Thickness", Float) = 0.01
     }
 
     SubShader
@@ -219,20 +219,20 @@ Shader "Custom/OutlineSeeThroughLit"
             };
 
             half4 _OutlineColor;
-            half _OutlineDistance;
+            half _OutlineThickness;
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
                 
                 /* Object space */
-                // float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz + IN.normalOS.xyz * _OutlineDistance);
+                // float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz + IN.normalOS.xyz * _OutlineThickness);
                 // OUT.positionHCS = TransformWorldToHClip(positionWS);
 
                 /* World space */
                 // float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz);
                 // float3 normalWS = TransformObjectToWorldNormal(IN.normalOS.xyz);
-                // positionWS += normalWS * _OutlineDistance;
+                // positionWS += normalWS * _OutlineThickness;
                 // OUT.positionHCS = TransformWorldToHClip(positionWS);
 
                 /* World space, constant outline thickness */
@@ -240,7 +240,7 @@ Shader "Custom/OutlineSeeThroughLit"
                 float3 normalWS = TransformObjectToWorldNormal(IN.normalOS.xyz);
                 float3 positionView = positionWS - GetCameraPositionWS();
                 float distToCam = dot(GetViewForwardDir(), positionView);
-                positionWS += normalWS * distToCam * _OutlineDistance;
+                positionWS += normalWS * distToCam * _OutlineThickness;
                 OUT.positionHCS = TransformWorldToHClip(positionWS);
 
                 return OUT;
