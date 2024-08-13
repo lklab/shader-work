@@ -209,7 +209,7 @@ Shader "Custom/OutlineLit"
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-                
+
                 /* Object space */
                 // float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz + IN.normalOS.xyz * _OutlineThickness);
                 // OUT.positionHCS = TransformWorldToHClip(positionWS);
